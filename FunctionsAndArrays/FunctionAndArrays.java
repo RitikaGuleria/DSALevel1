@@ -2,10 +2,12 @@ package FunctionsAndArrays;
 
 import java.util.Scanner;
 
+//Functions And Arrays
+// (1) Functions
 public class FunctionAndArrays
  {
     public static void main(String[] args) {
-        Scanner sc=new Scanner(System.in);
+        // Scanner sc=new Scanner(System.in);
 
         // int n=sc.nextInt();
         // int d=sc.nextInt();
@@ -23,14 +25,15 @@ public class FunctionAndArrays
         // int ans=AnyBaseToAnyBase(n,b1,b2);
         // System.out.println(ans);
 
-        int n1=sc.nextInt();
-        int n2=sc.nextInt();
-        int b=sc.nextInt();
-        // int ans=AnyBaseAddition(n1,n2,b);
-        int ans=AnyBaseSubtraction(n1,n2,b);
-        System.out.println(ans);
+        // int n1=sc.nextInt();
+        // int n2=sc.nextInt();
+        // int b=sc.nextInt();
+        // // int ans=AnyBaseAddition(n1,n2,b);
+        // // int ans=AnyBaseSubtraction(n1,n2,b);
+        // int ans=AnyBaseMultiplication(n1,n2,b);
+        // System.out.println(ans);
 
-        
+        SpanOfAnArray();
     }
 
     // 1) Digit Frequency
@@ -141,5 +144,76 @@ public class FunctionAndArrays
             pow = pow*10;
         }
         return ans;
+    }
+
+    //6) Any Base Multiplication
+    public static int AnyBaseMultiplication(int n1,int n2,int b)
+    {
+        int rv=0;
+        int pow=1;
+        while(n2>0)
+        {
+            int d2= n2%10;
+            n2 = n2/10;
+
+            int sprd = getProductWithSingleDigit(b, n1, d2);
+            rv = AnyBaseAddition(rv,sprd*pow, b);
+            pow=pow*10;
+        }
+        return rv;
+    }
+    public static int getProductWithSingleDigit(int b,int n1,int d2)
+    {
+        int rv=0;
+        int c=0;
+        int pow=1;
+
+        while(n1 > 0 || c > 0)
+        {
+            int d1=n1 % 10;
+            n1= n1/10;
+
+            int d= d1*d2 + c;
+
+            d= d%b;
+            c = d/b;
+
+            rv += d*pow;
+            pow= pow*10;
+        }
+        return rv;
+    }
+
+    //Arrays
+    //Span of an array
+    public static void SpanOfAnArray()
+    {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int arr[]=new int[n];
+
+        for(int i=0;i<arr.length;i++)
+        {
+            arr[i]=sc.nextInt();
+        }
+
+        int max=arr[0];
+        for(int i=0;i<arr.length;i++){
+            if(max<arr[i])
+            {
+                max=arr[i];
+            }
+        }
+
+        int min=arr[0];
+         for(int i=0;i<arr.length;i++){
+            if(min>arr[i])
+            {
+                min=arr[i];
+            }
+        }
+
+        int span=max-min;
+        System.out.println(span);
     }
 }
