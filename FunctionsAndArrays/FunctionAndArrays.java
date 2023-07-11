@@ -37,7 +37,11 @@ public class FunctionAndArrays
         // findElementInAnArray();
         // BarChart();
         // SumOfTwoArrays();
-        DifferenceOfTwoArrays();
+        // DifferenceOfTwoArrays();
+        // ReverseAnArray();
+        // RotateAnArray();
+        // InverseOfAnArray();
+        SubArraysofAnArray();
     }
 
     // 1) Digit Frequency
@@ -120,7 +124,7 @@ public class FunctionAndArrays
         return ans;
     }
 
-    //6) Any Base Subtraction
+    //6) Any Base Subtraction-
     public static int AnyBaseSubtraction(int n1,int n2,int b)
     {
         int ans=0;
@@ -339,7 +343,7 @@ public class FunctionAndArrays
             System.out.print(val);
         }
     }
-    //Difference b/w two arrays
+    //Difference b/w two arrays-  assumng arr2 is a bigger
     public static void DifferenceOfTwoArrays()
     {
         Scanner sc=new Scanner(System.in);
@@ -387,7 +391,7 @@ public class FunctionAndArrays
             k--;
         }
 
-        //removing front zeros
+        //removing front zeros- MOST SIGNIFICANT DIGITS
         int idx=0;
         while(idx<diff.length)
         {
@@ -405,4 +409,129 @@ public class FunctionAndArrays
             idx++;
         }
     }
+
+    //Reverse an Array
+    public static void ReverseAnArray()
+    {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int arr[]=new int[n];
+        for(int i=0;i<arr.length;i++)
+        {
+            arr[i]=sc.nextInt();
+        }
+
+        int i=0;
+        int j=arr.length-1;
+        while(i<j)
+        {
+            int temp=arr[i];
+            arr[i]=arr[j];
+            arr[j]=temp;
+
+            i++;
+            j--;
+        }
+        for(int ians=0;ians<arr.length;ians++)
+        {
+            System.out.println(arr[ians]);
+        }
+
+    }
+
+    //Rotate an array
+    public static void RotateAnArray()
+    {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int arr[]=new int[n];
+        for(int i=0;i<arr.length;i++)
+        {
+            arr[i]=sc.nextInt();
+        }
+        int k=sc.nextInt();
+
+        //If K is a very big number
+        k=k%arr.length;
+        //if k is a -ve number
+        if(k<0)
+        {
+            k=k+arr.length;
+        }
+
+        //first part reverse
+        HelperReverseAnArray(arr, 0,n-k-1);
+        //second part reverse
+        HelperReverseAnArray(arr, arr.length-k,arr.length-1);
+        //whole reverse of an array
+        HelperReverseAnArray(arr, 0,arr.length-1);
+    }
+    //helper reverse an array
+    public static void HelperReverseAnArray(int arr[],int i,int j)
+    {
+        int l=i;
+        int r=j;
+        while(l<r)
+        {
+            int temp=arr[l];
+            arr[l]=arr[r];
+            arr[r]=temp;
+
+            l++;
+            r--;
+        }
+        for(int ans=0;ans<arr.length;ans++)
+        {
+            System.out.print(arr[ans]);
+        }
+        System.out.println();
+    }
+
+    //Inverse of an array
+    public static void InverseOfAnArray()
+    {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int arr[]=new int[n];
+        for(int i=0;i<arr.length;i++)
+        {
+            arr[i]=sc.nextInt();
+        }
+
+        int inv[]=new int[arr.length];
+        for(int i=0;i<arr.length;i++)
+        {
+            int v=arr[i];
+            inv[v]=i;
+        }
+        for(int i=0;i<inv.length;i++)
+        {
+            System.out.print(inv[i]);
+        }
+    }
+
+    //SubArrays of an array
+    public static void SubArraysofAnArray()
+    {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int arr[]=new int[n];
+        for(int i=0;i<arr.length;i++)
+        {
+            arr[i]=sc.nextInt();
+        }
+
+        for(int i=0;i<arr.length;i++)
+        {
+            for(int j=i;j<arr.length;j++)
+            {
+                for(int k=i;k<=j;k++)
+                {
+                    System.out.print(arr[k]+"\t");
+                }
+                System.out.println();
+            }
+        }
+    }
+
 }
