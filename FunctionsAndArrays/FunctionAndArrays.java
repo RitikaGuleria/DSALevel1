@@ -33,7 +33,10 @@ public class FunctionAndArrays
         // int ans=AnyBaseMultiplication(n1,n2,b);
         // System.out.println(ans);
 
-        SpanOfAnArray();
+        // SpanOfAnArray();
+        // findElementInAnArray();
+        // BarChart();
+        SumOfTwoArrays();
     }
 
     // 1) Digit Frequency
@@ -215,5 +218,124 @@ public class FunctionAndArrays
 
         int span=max-min;
         System.out.println(span);
+    }
+    //Find Element in an array
+    public static void findElementInAnArray()
+    {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int arr[]=new int[n];
+
+        for(int i=0;i<arr.length;i++)
+        {
+            arr[i]=sc.nextInt();
+        }
+        int data=sc.nextInt();
+        int idx=-1;
+        for(int i=0;i<arr.length;i++)
+        {
+            if(arr[i]==data)
+            {
+                idx=i;
+                break;
+            }
+        }
+        System.out.println(idx);
+    }
+    //Bar Chart
+    public static void BarChart()
+    {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int arr[]=new int[n];
+
+        for(int i=0;i<arr.length;i++)
+        {
+            arr[i]=sc.nextInt();
+        }
+
+        int max=arr[0];
+        for(int i=1;i<arr.length;i++)
+        {
+            if(arr[i]>max)
+            {
+                max=arr[i];
+            }
+        }
+
+        for(int floor=max;floor>=1;floor--)
+        {
+            for(int i=0;i<arr.length;i++)
+            {
+                if(arr[i]>=floor)
+                {
+                    System.out.print("*\t");
+                }
+                else{
+                    System.out.print("\t");
+                }
+            }
+            System.out.println();
+        } 
+    }
+    //Sum of two arrays
+    public static void SumOfTwoArrays()
+    {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("enter n1");
+        int n1=sc.nextInt();
+        int arr1[] = new int[n1];
+        System.out.println("enter arr1 integers");
+        for(int i=0;i<arr1.length;i++)
+        {
+            arr1[i]=sc.nextInt();
+        }
+        System.out.println("enter n2");
+        int n2=sc.nextInt();
+        int arr2[] = new int[n2];
+        System.out.println("enter arr2 integers");
+        for(int i=0;i<arr2.length;i++)
+        {
+            arr2[i]=sc.nextInt();
+        }
+
+        int sum[]= new int[n1 > n2 ? n1 : n2];
+
+        
+        int c=0;
+
+        int i=arr1.length-1;
+        int j=arr2.length-1;
+        int k=sum.length-1;
+
+        while(k>=0)
+        {
+            int d=c;
+
+            if(i>=0)
+            {
+                d += arr1[i];
+            }
+            if(j>=0)
+            {
+                d += arr2[j];
+            }
+            
+            c=d/10;
+            d=d%10;
+            sum[k]=d;
+
+            i--;
+            j--;
+            k--;
+        }
+        if(c!=0)
+        {
+            System.out.print(c);
+        }
+        for(int val : sum)
+        {
+            System.out.print(val);
+        }
     }
 }
