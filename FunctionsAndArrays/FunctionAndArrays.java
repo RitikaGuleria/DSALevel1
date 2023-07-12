@@ -1,5 +1,6 @@
 package FunctionsAndArrays;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 //Functions And Arrays
@@ -41,7 +42,11 @@ public class FunctionAndArrays
         // ReverseAnArray();
         // RotateAnArray();
         // InverseOfAnArray();
-        SubArraysofAnArray();
+        // SubArraysofAnArray();
+        // CeilAndFloor_BrokenEconomy();
+        // FirstAndLastIndex();
+        // SubsetsOfAnArray();
+        RemovePrime();
     }
 
     // 1) Digit Frequency
@@ -534,4 +539,172 @@ public class FunctionAndArrays
         }
     }
 
+    //Broken Economy- ceil and floor
+    public static void CeilAndFloor_BrokenEconomy()
+    {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int arr[]=new int[n];
+        for(int i=0;i<arr.length;i++)
+        {
+            arr[i]=sc.nextInt();
+        }
+
+        int data=sc.nextInt();
+        int lo=0;
+        int hi=arr.length-1;
+        int ceil=0;
+        int floor=0;
+
+        while(lo<=hi)
+        {
+            int mid=(lo+hi)/2;
+            if(data<arr[mid])
+            {
+                hi=mid-1;
+                ceil=arr[mid];
+            }
+            else if(data>arr[mid])
+            {
+                lo=mid+1;
+                floor=arr[mid];
+            }
+            else{
+                floor=arr[mid];
+                ceil=arr[mid];
+                break;
+            }
+        }
+        System.out.println(floor);
+        System.out.println(ceil);
+    }
+
+    //First and Last Index - using Binary Search
+    public static void FirstAndLastIndex()
+    {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int arr[]=new int[n];
+        for(int i=0;i<arr.length;i++)
+        {
+            arr[i]=sc.nextInt();
+        }
+        int data=sc.nextInt();
+
+        int lo=0;
+        int hi=arr.length-1;
+        int li=-1;
+
+        while(lo<=hi)
+        {
+            int mid=(lo+hi)/2;
+
+            if(data < arr[mid])
+            {
+                hi=mid-1;
+            }
+            else if(data > arr[mid])
+            {
+                lo=mid+1;
+            }
+            else
+            {
+                li=mid;
+                lo=mid+1;
+            }
+        }
+        System.out.println("Last index is "+li);
+
+        lo=0;
+        hi=arr.length-1;
+        int fi=-1;
+        while(lo<=hi)
+        {
+            int mid=(lo+hi)/2;
+
+            if(data < arr[mid])
+            {
+                hi=mid-1;
+            }
+            else if(data > arr[mid])
+            {
+                lo=mid+1;
+            }
+            else
+            {
+                fi=mid;
+                hi=mid-1;
+            }
+        }
+        System.out.println("First index is "+fi);
+    } 
+
+    //Subsets of an Array
+    public static void SubsetsOfAnArray()
+    {
+        Scanner sc=new Scanner(System.in);
+        int n= sc.nextInt();
+        int arr[]=new int[n];
+        for(int i=0;i<arr.length;i++)
+        {
+            arr[i]=sc.nextInt();
+        }
+
+        int limit = (int) Math.pow(2,arr.length);
+
+        for(int i=0;i<limit;i++)
+        {
+            int temp=i;
+            String set="";
+            for(int j=arr.length-1;j>=0;j--)
+            {
+                int r=temp%2;
+                temp=temp/2;
+
+                if(r==0)
+                {
+                    set="-\t"+set;
+                }
+                else{
+                    set=arr[j] + "\t"+set;
+                }
+            }
+            System.out.println(set);
+
+        }
+    }
+
+    //Remove Prime from ArrayList
+    public static void RemovePrime()
+    {
+        Scanner sc = new Scanner(System.in);
+        int n=sc.nextInt();
+        ArrayList<Integer> al = new ArrayList<>();
+        for(int i=0;i<n;i++)
+        {
+            al.add(sc.nextInt());
+        }
+
+        for(int i=al.size()-1 ; i>=0 ; i--)
+        {
+            int item=al.get(i);
+            if(isPrime(item))
+            {
+                al.remove(i);
+            }
+        }
+        System.out.println(al);
+
+    }
+    public static boolean isPrime(int val)
+    {
+        for(int div=2;div*div<=val ;div++)
+        {
+            if(val%div==0)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
 }
