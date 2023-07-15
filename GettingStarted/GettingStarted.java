@@ -1,3 +1,4 @@
+package GettingStarted;
 
 import java.util.*;
 
@@ -5,7 +6,7 @@ public class GettingStarted
 {
     public static void main(String[] args)
     {
-        GCD&LCM();
+        // GCD&LCM();
     }
 
     //1) isNumberPrime
@@ -204,7 +205,7 @@ public class GettingStarted
         System.out.println(ans);
     }
     //10) gcd and lcm
-    public static void GCD&LCM()
+    public static void GCDAndLCM()
     {
         Scanner sc=new Scanner(System.in);
         int n1=sc.nextInt();
