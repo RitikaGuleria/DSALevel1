@@ -4,8 +4,10 @@ import java.util.Scanner;
 
 public class Module_2DArrays {
     public static void main(String[] args) {
-        MatrixMultiplication();
+        // MatrixMultiplication();
+        TheStateOfWakanda1();
     }
+
     //Matrix Multiplication
     public static void MatrixMultiplication()
     {
@@ -47,7 +49,7 @@ public class Module_2DArrays {
             {
                 for(int k=0;k<c1;k++)
                 {
-                    ans[i][j]+=one[i][k]+two[k][j];
+                    ans[i][j]+=one[i][k]*two[k][j];
                 }
             }
         }
@@ -58,6 +60,39 @@ public class Module_2DArrays {
                 System.out.print(ans[i][j]+" ");
             }
             System.out.println();
+        }
+    }
+
+    //The state of Wakanda 1
+    public static void TheStateOfWakanda1()
+    {
+        Scanner sc=new Scanner(System.in);
+        int r=sc.nextInt();
+        int c=sc.nextInt();
+
+        int arr[][]=new int[r][c];
+
+        for(int i=0;i<arr.length;i++)
+        {
+            for(int j=0;j<arr[0].length;j++)
+            {
+                arr[i][j]=sc.nextInt();
+            }
+        }
+
+        for(int j=0;j<arr[0].length;j++)
+        {
+            if(j%2==0)
+            {
+                for(int i=0;i<arr.length;i++)
+                {
+                    System.out.println(arr[i][j]);
+                }
+            }else{
+                for(int i=arr.length-1;i>=0;i--){
+                   System.out.println(arr[i][j]); 
+                }
+            }
         }
     }
 }
