@@ -7,7 +7,19 @@ public class Module_2DArrays {
         // MatrixMultiplication();
         // TheStateOfWakanda1();
         // SpiralDisplay();
-        ExitPointOfAMatrix();
+        // ExitPointOfAMatrix();
+
+        // int ans[][]=Transpose();
+        // for(int i=0;i<ans.length;i++)
+        // {
+        //     for(int j=0;j<ans[0].length;j++)
+        //     {
+        //         System.out.print(ans[i][j]+" ");
+        //     }
+        //     System.out.println();
+        // }
+
+        RotateBy90Degree();
     }
 
     //Matrix Multiplication
@@ -217,5 +229,75 @@ public class Module_2DArrays {
         }
         System.out.println(i);
         System.out.println(j);
+    }
+    //Transpose of a matrix
+    public static int[][] Transpose()
+    {
+        Scanner sc=new Scanner(System.in);
+        int r=sc.nextInt();
+        int c=sc.nextInt();
+
+        int arr[][]=new int[r][c];
+
+        for(int i=0;i<arr.length;i++)
+        {
+            for(int j=0;j<arr[0].length;j++)
+            {
+                arr[i][j]=sc.nextInt();
+            }
+        }
+        //method-1
+
+        // int ans[][]=new int[arr[0].length][arr.length];
+        // for(int i=0;i<arr[0].length;i++)
+        // {
+        //     for(int j=0;j<arr.length;j++)
+        //     {
+        //         ans[i][j]=arr[j][i];
+        //     }
+        // }
+        // return ans;
+
+        //method-2
+        for(int i=0;i<arr.length;i++)
+        {
+            for(int j=i;j<arr[0].length;j++)
+            {
+                int temp=arr[i][j];
+                arr[i][j]=arr[j][i];
+                arr[j][i]=temp;
+            }
+        }
+        return arr;
+    }
+
+    //Rotate by 90 degree
+    public static void RotateBy90Degree()
+    {
+        int arr[][]=Transpose();
+
+        for(int i=0;i<arr.length;i++)
+        {
+            int li=0;
+            int ri=arr[i].length-1;
+            while(li<ri)
+            {
+                int temp=arr[i][li];
+                arr[i][li]=arr[i][ri];
+                arr[i][ri]=temp;
+
+                li++;
+                ri--;
+            }
+        }
+
+        for(int i=0;i<arr.length;i++)
+        {
+            for(int j=0;j<arr[0].length;j++)
+            {
+                System.out.print(arr[i][j]+" ");
+            }
+            System.out.println();
+        }
     }
 }
