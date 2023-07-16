@@ -5,7 +5,9 @@ import java.util.Scanner;
 public class Module_2DArrays {
     public static void main(String[] args) {
         // MatrixMultiplication();
-        TheStateOfWakanda1();
+        // TheStateOfWakanda1();
+        // SpiralDisplay();
+        ExitPointOfAMatrix();
     }
 
     //Matrix Multiplication
@@ -94,5 +96,126 @@ public class Module_2DArrays {
                 }
             }
         }
+    }
+    //Spiral Display
+    public static void SpiralDisplay()
+    {
+        Scanner sc=new Scanner(System.in);
+        int r=sc.nextInt();
+        int c=sc.nextInt();
+
+        int arr[][]=new int[r][c];
+
+        for(int i=0;i<arr.length;i++)
+        {
+            for(int j=0;j<arr[0].length;j++)
+            {
+                arr[i][j]=sc.nextInt();
+            }
+        }
+
+        int minr=0;
+        int minc=0;
+        int maxr=arr.length-1;
+        int maxc=arr[0].length-1;
+        int totalElements=r*c;
+        int count=0;
+
+        while(count<totalElements)
+        {
+            //Left wall<
+            for(int i=minr,j=minc;i<=maxr && count<totalElements;i++)
+            {
+                System.out.println(arr[i][j]);
+                count++;
+            }
+            minc++;
+            //Bottom wall
+            for(int i=maxr,j=minc;j<=maxc && count<totalElements;j++)
+            {
+                System.out.println(arr[i][j]);
+                count++;
+            }
+            maxr--;
+            //Right wall
+            for(int i=maxr,j=maxc ;i>=minr && count<totalElements ;i--)
+            {
+                System.out.println(arr[i][j]);
+                count++;
+            }
+            maxc--;
+            //Top wall
+            for(int j=maxc,i=minr;j>=minc && count<totalElements;j--)
+            {
+                System.out.println(arr[i][j]);
+                count++;
+            }
+            minr++;
+        }
+
+    }
+    //Exit point of a matrix
+    public static void ExitPointOfAMatrix()
+    {
+       Scanner sc=new Scanner(System.in);
+        int r=sc.nextInt();
+        int c=sc.nextInt();
+
+        int arr[][]=new int[r][c];
+
+        for(int i=0;i<arr.length;i++)
+        {
+            for(int j=0;j<arr[0].length;j++)
+            {
+                arr[i][j]=sc.nextInt();
+            }
+        }
+        int dir=0; //East-0, south-1,west-2,North-3
+        int i=0;
+        int j=0; 
+        while(true)
+        {
+            dir=(dir+arr[i][j])%4;
+            if(dir==0) //east
+            {
+                j++;
+            }
+            else if(dir==1) //south
+            {
+                i++;
+            }
+            else if(dir==2) //west
+            {
+                j--;
+            }
+            else if(dir==3) //north
+            {
+                i--;
+            }
+
+
+            if(i<0)
+            {
+                i++;
+                break;
+            }
+            else if(i==arr.length)
+            {
+                i--;
+                break;
+            }
+            else if(j<0)
+            {
+                j++;
+                break;
+            }
+           else if(j==arr[0].length)
+            {
+                j--;
+                break;
+            }
+        }
+        System.out.println(i);
+        System.out.println(j);
     }
 }
